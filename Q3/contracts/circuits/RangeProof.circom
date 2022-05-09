@@ -1,5 +1,6 @@
 pragma circom 2.0.0;
-
+// include "bitify.circom";
+// include "binsum.circom";
 include "../../node_modules/circomlib/circuits/comparators.circom";
 
 template RangeProof(n) {
@@ -12,4 +13,14 @@ template RangeProof(n) {
     component high = GreaterEqThan(n);
 
     // [assignment] insert your code here
+
+    
+    low.in[0] <== in;
+    low.in[1] <== range[1];
+   
+    high.in[0] <== in;
+    high.in[1] <== range[0];
+
+    out <== low.out * high.out;
 }
+
